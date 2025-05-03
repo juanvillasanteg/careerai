@@ -87,6 +87,20 @@ The UI will provide:
 4. Ability to download resume or connect to LinkedIn/GitHub
 5. Mobile-friendly responsive design
 
+## Documentation and Decision Records
+
+The `docs/` directory contains detailed documentation on key decision topics. Before making a new implementation or architectural change, check the relevant files in `docs/` and update them as necessary. These documents cover:
+
+- [System Architecture](docs/architecture.md)
+- [Key Technical Decisions](docs/architecture.md)
+- [Design Patterns in Use](docs/architecture.md)
+- [Component Relationships](docs/architecture.md)
+- [API Documentation](docs/api.md)
+- [Data Model](docs/data_model.md)
+- [Other relevant topics as the project evolves]
+
+**Always consult and update these files to ensure consistency and traceability of major decisions.**
+
 ## Potential Challenges and Mitigations
 
 | Challenge                           | Mitigation Strategy                                             |
