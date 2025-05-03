@@ -1,149 +1,65 @@
 # CareerAI Implementation Tasks
 
-## Phase 1: Project Setup and Foundation
+## MVP-First, UI-Driven Approach (2024-06-14)
 
-### 1.1 Environment and Repository Setup
+### Phase 1: Foundation & Data (Completed)
 
-- [x] 1.1.1 Create GitHub repository for the project
-- [x] 1.1.2 Set up Python 3.12.10 development environment
-- [x] 1.1.3 Configure Ruff for linting and pytest for testing
-- [x] 1.1.4 Set up dependency management and virtual environment
-- [x] 1.1.5 Create project structure and documentation templates
+- [x] Create GitHub repository for the project
+- [x] Set up Python 3.12.10 development environment
+- [x] Configure Ruff for linting and pytest for testing
+- [x] Set up dependency management and virtual environment
+- [x] Create project structure and documentation templates
+- [x] Design JSON/YAML schema for resume data
+- [x] Create sample resume data files for testing
 
-### 1.2 Data Source Definition
+### Phase 2: UI MVP (In Progress)
 
-- [x] 1.2.1 Design JSON/YAML schema for resume data (2024-06-13)
-- [x] 1.2.2 Create sample resume data files for testing (2024-06-13)
-- [ ] 1.2.3 Define integration structure for LinkedIn data (if applicable)
-- [ ] 1.2.4 Establish GitHub activity data collection methods (if applicable)
-- [ ] 1.2.5 Document data privacy considerations and security protocols
+- [ ] Set up Streamlit app structure (see `src/app.py`)
+- [x] Modularize app entrypoint to `src/main.py` for clarity and future expansion
+- [x] Implement basic chat interface (user input, message display, chat history)
+- [x] Add static profile/overview panel (placeholder)
+- [x] Mock conversation responses (hardcoded for now)
+- [x] Add session state for chat history
 
-## Phase 2: AI and Retrieval System
+### Phase 3: Minimal Backend (Parallel)
 
-### 2.1 Document Retrieval System
+- [ ] Set up minimal backend logic (can be a Python module or FastAPI endpoint)
+- [ ] Prepare interface for connecting UI to backend (function or API call)
+- [ ] Ensure backend can be swapped from mock to real AI agent easily
 
-- [ ] 2.1.1 Implement vector-based retrieval system for semantic search
-- [ ] 2.1.2 Develop chunking strategy for professional documents
-- [ ] 2.1.3 Create embedding generation pipeline
-- [ ] 2.1.4 Build relevance scoring for query results
-- [ ] 2.1.5 Test retrieval accuracy with sample questions
+### Phase 4: Backend Integration
 
-### 2.2 Context Management
+- [ ] Connect chat UI to backend (replace hardcoded responses)
+- [ ] Integrate LangChain agent for basic Q&A using sample resume data
+- [ ] Replace mock responses with real AI-powered answers
 
-- [ ] 2.2.1 Implement conversation history tracking
-- [ ] 2.2.2 Develop system for previously discussed topics
-- [ ] 2.2.3 Create memory mechanisms to avoid repetition
-- [ ] 2.2.4 Build context window management
-- [ ] 2.2.5 Design conversational state persistence
+### Phase 5: Data & Features
 
-### 2.3 Response Generation
+- [ ] Load and display real resume data (JSON/YAML)
+- [ ] Add question suggestions
+- [ ] Implement resume download
+- [ ] Add error handling and basic edge cases
 
-- [ ] 2.3.1 Create templated responses for common questions
-- [ ] 2.3.2 Implement dynamic response generation for specific inquiries
-- [ ] 2.3.3 Build personality alignment system for professional's style
-- [ ] 2.3.4 Develop confidence scoring for responses
-- [ ] 2.3.5 Implement handling for out-of-scope questions
+### Phase 6: Polish & Expand
 
-## Phase 3: User Interface Development
+- [ ] Responsive/mobile tweaks
+- [ ] Connect LinkedIn/GitHub (optional)
+- [ ] Polish UI and UX
 
-### 3.1 Streamlit Framework Setup
+---
 
-- [ ] 3.1.1 Set up Streamlit application structure
-- [ ] 3.1.2 Create layout for conversational interface
-- [ ] 3.1.3 Implement profile information overview panel
-- [ ] 3.1.4 Build mobile-friendly responsive design
-- [ ] 3.1.5 Set up session state management
+## Future/Optional Features
 
-### 3.2 Conversation UI
+- Multi-language support
+- Voice interface option
+- Customizable agent personality
+- Integration with job application systems
+- Analytics for interview performance and common questions
+- Advanced retrieval, chunking, and scoring
+- System scaling and optimization
 
-- [ ] 3.2.1 Design and implement chat interface
-- [ ] 3.2.2 Create suggestion system for possible questions
-- [ ] 3.2.3 Build typing indicators and response animations
-- [ ] 3.2.4 Implement conversation history display
-- [ ] 3.2.5 Design error states and recovery mechanisms
+---
 
-### 3.3 External Connections
+## Discovered During Work
 
-- [ ] 3.3.1 Implement resume download functionality
-- [ ] 3.3.2 Create LinkedIn connection options
-- [ ] 3.3.3 Build GitHub profile linking
-- [ ] 3.3.4 Design portfolio website connections
-- [ ] 3.3.5 Implement sharing capabilities
-
-## Phase 4: Integration and Testing
-
-### 4.1 Component Integration
-
-- [ ] 4.1.1 Connect UI layer with AI agent layer
-- [ ] 4.1.2 Integrate data sources with AI agent
-- [ ] 4.1.3 Implement end-to-end data flow
-- [ ] 4.1.4 Create system for conversation persistence
-- [ ] 4.1.5 Build logging and monitoring system
-
-### 4.2 Testing
-
-- [ ] 4.2.1 Develop unit tests for core components
-- [ ] 4.2.2 Create integration tests for end-to-end functionality
-- [ ] 4.2.3 Implement accuracy testing for responses
-- [ ] 4.2.4 Design performance testing for response times
-- [ ] 4.2.5 Build user testing protocol and feedback collection
-
-### 4.3 Deployment Preparation
-
-- [ ] 4.3.1 Create containerization setup with Docker
-- [ ] 4.3.2 Develop deployment scripts and documentation
-- [ ] 4.3.3 Configure cloud deployment options
-- [ ] 4.3.4 Implement security measures and safeguards
-- [ ] 4.3.5 Create backup and recovery procedures
-
-## Phase 5: Launch and Evaluation
-
-### 5.1 Initial Deployment
-
-- [ ] 5.1.1 Deploy to production environment
-- [ ] 5.1.2 Conduct system verification and testing
-- [ ] 5.1.3 Implement monitoring and alerting
-- [ ] 5.1.4 Create user onboarding materials
-- [ ] 5.1.5 Launch to initial test users
-
-### 5.2 Metrics Collection
-
-- [ ] 5.2.1 Set up tracking for response accuracy
-- [ ] 5.2.2 Implement engagement metrics collection (conversation length, questions per session)
-- [ ] 5.2.3 Create user satisfaction rating system
-- [ ] 5.2.4 Build conversion metrics tracking (downloads, connections)
-- [ ] 5.2.5 Develop technical performance monitoring (response time, error rates)
-
-### 5.3 Iteration and Improvement
-
-- [ ] 5.3.1 Analyze initial usage data and feedback
-- [ ] 5.3.2 Prioritize improvements based on metrics
-- [ ] 5.3.3 Implement high-priority enhancements
-- [ ] 5.3.4 Refine AI agent based on real-world usage
-- [ ] 5.3.5 Optimize performance and user experience
-
-## Phase 6: Enhancement and Expansion
-
-### 6.1 Feature Enhancements
-
-- [ ] 6.1.1 Explore multi-language support implementation
-- [ ] 6.1.2 Research voice interface options
-- [ ] 6.1.3 Develop customizable agent personality features
-- [ ] 6.1.4 Design integration with job application systems
-- [ ] 6.1.5 Build analytics for interview performance and common questions
-
-### 6.2 Scale and Optimization
-
-- [ ] 6.2.1 Optimize for larger resume datasets
-- [ ] 6.2.2 Improve response time and performance
-- [ ] 6.2.3 Enhance mobile experience
-- [ ] 6.2.4 Implement advanced caching strategies
-- [ ] 6.2.5 Develop system scaling for increased usage
-
-### 6.3 Documentation and Knowledge Sharing
-
-- [ ] 6.3.1 Create comprehensive user documentation
-- [ ] 6.3.2 Develop technical documentation for developers
-- [ ] 6.3.3 Build contribution guidelines for open-source potential
-- [ ] 6.3.4 Create case studies and success metrics reporting
-- [ ] 6.3.5 Prepare presentations and demonstrations for stakeholders
+- [ ] (Add new sub-tasks or TODOs here as they are discovered)

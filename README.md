@@ -65,10 +65,17 @@ uvx ruff check
 
 ## Running the Application
 
+The UI code is now modularized for maintainability and clarity:
+- `src/ui/chat.py`: Chat interface logic
+- `src/ui/profile.py`: Profile/sidebar and expander UI
+- `src/ui/utils.py`: UI utility functions (e.g., clear chat)
+
+The main entrypoint is now `src/main.py`.
+
 ```bash
 # Run using streamlit
-streamlit run your_script.py [-- script args]
+streamlit run src/main.py
 
 # Alternative way to run streamlit
-python -m streamlit run your_script.py
+python -m streamlit run src/main.py
 ```
