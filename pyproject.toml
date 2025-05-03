@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "careerai"
+version = "0.1.0"
+description = "An interactive digital resume with AI-powered conversational interface for exploring professional experience"
+readme = "README.md"
+requires-python = ">=3.12.10"
+authors = [{ name = "Juan Villasante", email = "juanvillasanteg@gmail.com" }]
+
+dependencies = [
+    "langchain>=0.3.24",
+    "pandas>=2.2.3",
+    "polars>=1.29.0",
+    "streamlit>=1.45.0",
+]
+
+
+[project.optional-dependencies]
+# Could be further improved and organized into groups
+dev = ["ipykernel", "ipywidgets", "nbformat", "pytest", "ruff>=0.11.7"]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+packages = { find = { where = ["src"] } }
+
+[tool.ruff]
+# Configuration for Ruff
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "D",
+    "ANN",
+    "C4",
+    "SIM",
+    "UP",
+    "N",
+    "A",
+    "COM",
+    "C90",
+]
+line-length = 88
+indent-width = 4
+target-version = "py312"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
