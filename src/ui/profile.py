@@ -1,11 +1,13 @@
 import streamlit as st
+from typing import Optional
 
-def render_profile_sidebar(clear_chat_callback):
+def render_profile_sidebar(clear_chat_callback, profile_data: Optional[dict] = None):
     """
     Render the profile/overview sidebar panel.
 
     Args:
         clear_chat_callback (Callable): Function to clear chat history.
+        profile_data (Optional[dict]): Static or loaded profile data for display.
     """
     st.title("CareerAI")
     st.caption("🚀 A Streamlit chatbot powered by LLMs")
@@ -15,6 +17,25 @@ def render_profile_sidebar(clear_chat_callback):
         This is a simple Streamlit app that uses a large language model (LLM) to answer questions about my professional experience.
         """,
     )
+    if profile_data:
+        st.markdown(f"""
+        **Name:** {profile_data.get('name', 'Juan Villasante')}
+        
+        **Title:** {profile_data.get('title', 'AI Engineer | Data Scientist')}
+        
+        **Location:** {profile_data.get('location', 'Remote | Global')}
+        
+        **Summary:** {profile_data.get('summary', 'Experienced in AI, ML, and data-driven product development.')}
+        """)
+    else:
+        st.markdown(
+            """
+            **Name:** Juan Villasante  
+            **Title:** AI Engineer | Data Scientist  
+            **Location:** Remote | Global  
+            **Summary:** Experienced in AI, ML, and data-driven product development.
+            """
+        )
     st.markdown(
         """
         ### Instructions

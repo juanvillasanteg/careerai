@@ -178,6 +178,7 @@ cython_debug/
 
 # Cursor
 .cursor/
+.cursorignore
 
 # vscode
 .vscode/

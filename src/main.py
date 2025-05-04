@@ -8,13 +8,13 @@
 #     response = message_handler.handle_user_message(user_input)
 #     st.chat_message("assistant").write(response)
 
-import time
 
 import streamlit as st
+
 from ui.chat import render_chat
-from ui.profile import render_profile_sidebar, render_profile_expander
+from ui.profile import render_profile_expander, render_profile_sidebar
 from ui.utils import clear_chat_history
-from typing import Dict, List
+
 
 def run_careerai_app():
     """Main function to run the CareerAI Streamlit app."""
@@ -37,8 +37,17 @@ def run_careerai_app():
         },
     )
 
+    # Static profile data (replace with dynamic load in future)
+    static_profile = {
+        "name": "Juan Villasante",
+        "title": "AI Engineer | Data Scientist",
+        "location": "Remote | Global",
+        "summary": "Experienced in AI, ML, and data-driven product development.",
+    }
     with st.sidebar:
-        render_profile_sidebar(clear_chat_callback=clear_chat_history)
+        render_profile_sidebar(
+            clear_chat_callback=clear_chat_history, profile_data=static_profile
+        )
 
     st.title("💬 CareerAI")
     st.caption("🚀 A Streamlit chatbot powered by LLMs")
@@ -51,6 +60,7 @@ def run_careerai_app():
         ]
 
     render_chat(st.session_state["messages"])
+
 
 if __name__ == "__main__":
     run_careerai_app()

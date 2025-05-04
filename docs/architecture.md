@@ -8,9 +8,10 @@ Describe the high-level architecture of CareerAI, including main components, dat
 - User Interface (Streamlit)
 - AI Agent Layer (LangChain)
 - Data Sources Layer (JSON/YAML, LinkedIn, GitHub, etc.)
+- Backend Interface Layer (Python module, e.g., `src/logic/backend_interface.py`)
 
 ## Data Flow
-- User input → AI agent → Data retrieval → Response generation → UI
+- User input → UI → Backend interface → AI agent (mock or real) → Data retrieval → Response generation → UI
 
 ## Diagrams
 (Add diagrams as needed)

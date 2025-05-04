@@ -66,9 +66,10 @@ uvx ruff check
 ## Running the Application
 
 The UI code is now modularized for maintainability and clarity:
-- `src/ui/chat.py`: Chat interface logic
-- `src/ui/profile.py`: Profile/sidebar and expander UI
+- `src/ui/chat.py`: Chat interface logic (now calls backend interface for responses)
+- `src/ui/profile.py`: Profile/sidebar and expander UI (now supports static/dynamic data)
 - `src/ui/utils.py`: UI utility functions (e.g., clear chat)
+- `src/logic/backend_interface.py`: Interface for backend/AI agent connection (mock for now)
 
 The main entrypoint is now `src/main.py`.
 
