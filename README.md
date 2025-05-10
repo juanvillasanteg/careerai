@@ -113,3 +113,35 @@ pytest
 # Run specific test file
 pytest tests/ui/test_chat.py
 ```
+
+## Logging
+
+CareerAI now includes structured logging for all agent actions and function tool calls. Logging is implemented using Python's standard `logging` module and is enabled by default at the INFO level.
+
+### What is Logged?
+
+- Agent creation and initialization
+- All user messages received by the agent
+- All function/tool calls made by the agent, including arguments and return status
+- All metadata and tool call details from the agent's responses
+- Errors and exceptions during agent or function execution (logged at ERROR level)
+
+### Where to Find Logs
+
+- Logs are output to the standard output (console) by default.
+- You can configure logging handlers in the code if you want to redirect logs to a file or another destination.
+
+### Example Log Output
+
+```
+2025-06-09 12:34:56,789 [INFO] src.agents.resume_agent: Resume agent created with tools: ['get_professional_experience', 'get_education', ...]
+2025-06-09 12:34:57,123 [INFO] src.agents.resume_agent: Agent received user message: What is your latest job?
+2025-06-09 12:34:57,456 [INFO] src.logic.functions: Function 'get_professional_experience' called with args=() kwargs={}
+2025-06-09 12:34:57,789 [INFO] src.logic.functions: Function 'get_professional_experience' returned successfully
+2025-06-09 12:34:58,012 [INFO] src.agents.resume_agent: Agent response: John most recently worked as a Senior Developer ...
+2025-06-09 12:34:58,013 [INFO] src.agents.resume_agent: Tool calls: ...
+```
+
+### Customizing Logging
+
+You can adjust the logging level or handlers by modifying the logger setup in `src/agents/resume_agent.py` and `src/logic/functions.py`.
