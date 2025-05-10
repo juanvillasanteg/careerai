@@ -17,7 +17,7 @@ from ui.utils import clear_chat_history
 
 
 def run_careerai_app():
-    """Main function to run the CareerAI Streamlit app."""
+    """Run the CareerAI Streamlit app."""
     # Streamlit Page Configuration
     st.set_page_config(
         page_title="CareerAI - An interactive Resume",
@@ -46,7 +46,8 @@ def run_careerai_app():
     }
     with st.sidebar:
         render_profile_sidebar(
-            clear_chat_callback=clear_chat_history, profile_data=static_profile
+            clear_chat_callback=clear_chat_history,
+            profile_data=static_profile,
         )
 
     st.title("💬 CareerAI")

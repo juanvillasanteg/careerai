@@ -65,13 +65,21 @@ uvx ruff check
 
 ## Running the Application
 
-The UI code is now modularized for maintainability and clarity:
-- `src/ui/chat.py`: Chat interface logic (now calls backend interface for responses)
-- `src/ui/profile.py`: Profile/sidebar and expander UI (now supports static/dynamic data)
-- `src/ui/utils.py`: UI utility functions (e.g., clear chat)
-- `src/logic/backend_interface.py`: Interface for backend/AI agent connection (mock for now)
+The application is structured as follows:
 
-The main entrypoint is now `src/main.py`.
+### UI Components
+
+- `src/ui/chat.py`: Chat interface logic
+- `src/ui/profile.py`: Profile/sidebar and expander UI
+- `src/ui/utils.py`: UI utility functions (e.g., clear chat)
+
+### Backend Components
+
+- `src/logic/backend_interface.py`: Interface for backend/AI agent connection
+- `src/logic/data_loader.py`: Loads and formats resume data
+- `src/agents/resume_agent.py`: LangChain-based agent for answering resume questions
+
+The main entrypoint is `src/main.py`.
 
 ```bash
 # Run using streamlit
@@ -79,4 +87,29 @@ streamlit run src/main.py
 
 # Alternative way to run streamlit
 python -m streamlit run src/main.py
+```
+
+## Features
+
+- Interactive chat interface for querying resume information
+- Static profile information display
+- Toggle between mock responses and actual LLM-powered responses
+- Backend powered by LangChain and GPT-4o-mini
+
+## Upcoming Features
+
+- Question suggestions
+- Resume download
+- Enhanced profile display
+- Full resume data integration
+- LinkedIn/GitHub connectivity
+
+## Testing
+
+```bash
+# Run all tests
+pytest
+
+# Run specific test file
+pytest tests/ui/test_chat.py
 ```

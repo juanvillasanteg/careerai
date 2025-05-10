@@ -3,8 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Other files
+# Other files and directories
+scratchpad/
 TASK.md
+PLANNING.md
+docs/PROJECT_STRUCTURE.md
+repomix-output.xml
+.repomix/
 
 # C extensions
 *.so
