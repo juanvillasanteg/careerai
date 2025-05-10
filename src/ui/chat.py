@@ -1,5 +1,3 @@
-import time
-
 import streamlit as st
 
 from logic.backend_interface import get_ai_response
@@ -20,8 +18,6 @@ def render_chat(messages: list[dict[str, str]]) -> None:
         st.chat_message("user").write(prompt)
         with st.spinner("Thinking..."):
             message_placeholder = st.empty()
-            time.sleep(1.5)  # sleep to simulate backend call
-
             response = get_ai_response(st.session_state.messages)
             st.session_state.messages.append({"role": "assistant", "content": response})
             st.chat_message("assistant").write(response)
