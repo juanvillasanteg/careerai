@@ -40,8 +40,8 @@ for i, msg in enumerate(st.session_state["messages"]):
             msg["content"],
             is_user=False,
             key=f"assistant_{i}",
-            avatar_style="fun-emoji",
-            seed="Jade",
+            avatar_style="bottts-neutral",
+            seed="Brooklynn",
         )
 
 if prompt := st.chat_input("Type your message..."):
@@ -60,6 +60,6 @@ if prompt := st.chat_input("Type your message..."):
         response,
         is_user=False,
         key=f"assistant_{len(st.session_state['messages'])}",
-        avatar_style="fun-emoji",
-        seed="Jade",
+        avatar_style="bottts-neutral",
+        seed="Brooklynn",
     )

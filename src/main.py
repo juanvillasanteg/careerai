@@ -30,7 +30,7 @@ def run_careerai_app():
     chat_page = st.Page("ui/chat.py", title="Chat", icon=":material/chat:")
     resume_generator_page = st.Page(
         "ui/resume_generator.py",
-        title="Resume with Image",
+        title="Resume Generator",
         icon=":material/description:",
     )
 
