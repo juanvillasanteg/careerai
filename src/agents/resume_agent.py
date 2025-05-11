@@ -1,12 +1,13 @@
 import logging
 from typing import Any
 
-from llama_index.core.agent import FunctionCallingAgent
+from llama_index.core.agent import ReActAgent
+from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.core.prompts import PromptTemplate
 from llama_index.core.tools import FunctionTool
 from llama_index.llms.openai import OpenAI
 
-from logic.functions import tool_registry
+from logic.query_engine import query_resume
 
 # Set up logger for this module
 logger = logging.getLogger(__name__)
@@ -20,54 +21,49 @@ if not logger.hasHandlers():
     logger.addHandler(handler)
 
 
-# Agent prompt template from PLANNING.md
-def get_agent_prompt() -> PromptTemplate:
-    """Return the agent prompt template for CareerAI."""
-    return PromptTemplate(
-        """
-You are CareerAI, an AI assistant representing a Juan Villasante professional's career.
-You have access to the following functions:
-- get_professional_experience(): Call when asked about work history, jobs, roles, or responsibilities
-- get_education(): Call when asked about education, degrees, schools, or academic background
-- get_user_data(): Call when asked about personal information, contact details, or location
-- get_resume_summary(): Call when asked for an overview or summary of qualifications
-- get_skills(): Call when asked about skills, technologies, or competencies
-
-When responding:
-1. If the question maps to available functions, call them to get accurate information
-2. If a question doesn't map to any function, politely explain that you don't have that specific information
-3. Maintain a conversational, helpful tone throughout the interaction
-4. If a function fails, inform the user there was an issue retrieving that information
-""",
-    )
-
-
 def get_llm() -> Any:
     """Initialize and return the OpenAI LLM instance."""
-    # The OpenAI class will use the OPENAI_API_KEY from the environment
     return OpenAI(model="gpt-4o")
 
 
-# gpt-4o
-# gpt-4.1-nano-2025-04-14
+def get_agent_prompt() -> PromptTemplate:
+    """Return the combined ReAct system prompt with custom CareerAI instructions."""
+    # Create a temporary agent to get the default prompts
+    temp_agent = ReActAgent(
+        tools=[],
+        llm=get_llm(),
+        memory=ChatMemoryBuffer.from_defaults(llm=get_llm()),
+    )
+    react_system_header_str = temp_agent.get_prompts()["react_header"]
+    custom_instructions = """
+You are CareerAI, an AI assistant representing a professional's career.
+You have access to a powerful search tool that can retrieve any information from the resume database.
+Always reason step by step, and use the search tool when you need specific details.
+Respond in a professional, helpful, and concise manner.
+"""
+    combined_prompt = react_system_header_str + "\n" + custom_instructions
+    return PromptTemplate(combined_prompt)
 
 
-def get_resume_agent() -> FunctionCallingAgent:
-    """Create and return the CareerAI LlamaIndex agent."""
+def get_resume_agent() -> ReActAgent:
+    """Create and return the CareerAI ReActAgent with the query engine tool."""
     llm = get_llm()
     prompt = get_agent_prompt()
-    # Wrap each function in tool_registry as a FunctionTool
-    tools = [FunctionTool.from_defaults(fn) for fn in tool_registry.values()]
-    agent = FunctionCallingAgent.from_tools(
+    # Wrap the query_resume function as a FunctionTool
+    tools = [
+        FunctionTool.from_defaults(
+            query_resume,
+            name="search_resume",
+            description="Searches the resume database for relevant information. Use this tool for any question about the candidate's experience, education, skills, or background.",
+        ),
+    ]
+    agent = ReActAgent.from_tools(
         tools=tools,
         llm=llm,
         system_prompt=prompt,
-        verbose=True,  # Enable verbose logging for tool calls # TODO: check if this consumes tokens
+        verbose=True,
     )
-    logger.info(
-        "Resume agent created with tools: %s",
-        [fn.__name__ for fn in tool_registry.values()],
-    )
+    logger.info("Resume agent created with ReActAgent and query engine tool.")
     return agent
 
 
@@ -103,7 +99,6 @@ def agent_respond(messages: list[dict[str, str]]) -> str:
         "Agent response: %s",
         getattr(chat_response, "response", str(chat_response)),
     )
-    # Explicitly log tool calls with tool name and arguments if present
     if hasattr(chat_response, "tool_calls") and chat_response.tool_calls:
         for call in chat_response.tool_calls:
             logger.info(

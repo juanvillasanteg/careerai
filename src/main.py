@@ -1,14 +1,3 @@
-# from logic import session_manager, message_handler
-
-# session_manager.init_session()
-
-# user_input = st.chat_input("Say something...")
-
-# if user_input:
-#     response = message_handler.handle_user_message(user_input)
-#     st.chat_message("assistant").write(response)
-
-
 import streamlit as st
 
 from ui.chat import render_chat
@@ -64,4 +53,4 @@ def run_careerai_app():
 
 
 if __name__ == "__main__":
-    run_careerai_app()
+    run_careerai_app()  # TODO: run with asyncio asyncio.run()
