@@ -1,7 +1,6 @@
 import streamlit as st
 
 from ui.profile import render_profile_sidebar
-from ui.utils import clear_chat_history
 
 
 def run_careerai_app():
@@ -25,18 +24,8 @@ def run_careerai_app():
         },
     )
 
-    # Static profile data (replace with dynamic load in future)
-    static_profile = {
-        "name": "Juan Villasante",
-        "title": "AI Engineer | Data Scientist",
-        "location": "Stuttgart, Germany",
-        "summary": "Experienced in AI, ML, and data-driven product development.",
-    }
     with st.sidebar:
-        render_profile_sidebar(
-            clear_chat_callback=clear_chat_history,
-            profile_data=static_profile,
-        )
+        render_profile_sidebar()
 
     chat_page = st.Page("ui/chat.py", title="Chat", icon=":material/chat:")
     resume_generator_page = st.Page(

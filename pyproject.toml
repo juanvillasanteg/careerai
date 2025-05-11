@@ -23,6 +23,7 @@ dependencies = [
     "python-dotenv>=1.1.0",
     "qdrant-client>=1.14.2",
     "streamlit>=1.45.0",
+    "streamlit-chat>=0.1.1",
 ]
 
 

@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-def render_profile_sidebar(clear_chat_callback, profile_data: dict | None = None):
+def render_profile_sidebar():
     """Render the profile/overview sidebar panel.
 
     Args:
@@ -15,25 +15,14 @@ def render_profile_sidebar(clear_chat_callback, profile_data: dict | None = None
             This is a simple Streamlit app that uses a large language model (LLM) to answer questions about my professional experience.
             """,
         )
-        if profile_data:
-            st.markdown(f"""
-            **Name:** {profile_data.get("name", "Juan Villasante")}
-            
-            **Title:** {profile_data.get("title", "AI Engineer | Data Scientist")}
-            
-            **Location:** {profile_data.get("location", "Remote | Global")}
-            
-            **Summary:** {profile_data.get("summary", "Experienced in AI, ML, and data-driven product development.")}
-            """)
-        else:
-            st.markdown(
-                """
-                **Name:** Juan Villasante  
-                **Title:** AI Engineer | Data Scientist  
-                **Location:** Remote | Global  
-                **Summary:** Experienced in AI, ML, and data-driven product development.
-                """,
-            )
+        st.markdown(
+            """
+            **Name:** Juan Villasante  
+            **Title:** AI Engineer | Data Scientist  
+            **Location:** Remote | Global  
+            **Summary:** Experienced in AI, ML, and data-driven product development.
+            """,
+        )
         st.markdown(
             """
             ### Instructions
@@ -41,13 +30,14 @@ def render_profile_sidebar(clear_chat_callback, profile_data: dict | None = None
             - I will respond with relevant information.
             """,
         )
-    st.sidebar.button("Clear Chat History", on_click=clear_chat_callback)
 
     linkedin = "https://raw.githubusercontent.com/juanvillasanteg/careerai/dev/src/ui/assets/linkedin.gif"
+    github = "https://raw.githubusercontent.com/juanvillasanteg/careerai/dev/src/ui/assets/github.gif"
     st.sidebar.caption(
         f"""
         <div style='display: flex; align-items: center;'>
-            <a href = 'www.linkedin.com/in/juan-villasante'><img src='{linkedin}' style='width: 35px; height: 35px; margin-right: 25px;'></a>
+            <a href = 'https://linkedin.com/in/juan-villasante'><img src='{linkedin}' style='width: 35px; height: 35px; margin-right: 25px;'></a>
+            <a href = 'https://github.com/juanvillasanteg'><img src='{github}' style='width: 35px; height: 35px; margin-right: 25px;'></a>
         </div>
         """,
         unsafe_allow_html=True,
