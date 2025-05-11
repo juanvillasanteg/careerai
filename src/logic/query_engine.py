@@ -8,7 +8,7 @@ from qdrant_client import QdrantClient
 
 QDRANT_URL = os.getenv("QDRANT_URL")
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
-QDRANT_COLLECTION = os.getenv("QDRANT_COLLECTION", "careerai-resume")
+# QDRANT_COLLECTION = os.getenv("QDRANT_COLLECTION", "careerai-resume")
 
 
 def get_query_engine() -> RetrieverQueryEngine:
@@ -27,7 +27,7 @@ def get_query_engine() -> RetrieverQueryEngine:
     # Set up Qdrant vector store
     vector_store = QdrantVectorStore(
         client=client,
-        collection_name=QDRANT_COLLECTION,
+        collection_name="careerai-resume",
     )
 
     # Create storage context and index

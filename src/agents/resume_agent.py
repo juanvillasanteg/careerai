@@ -2,7 +2,6 @@ import logging
 from typing import Any
 
 from llama_index.core.agent import ReActAgent
-from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.core.prompts import PromptTemplate
 from llama_index.core.tools import FunctionTool
 from llama_index.llms.openai import OpenAI
@@ -27,22 +26,28 @@ def get_llm() -> Any:
 
 
 def get_agent_prompt() -> PromptTemplate:
-    """Return the combined ReAct system prompt with custom CareerAI instructions."""
-    # Create a temporary agent to get the default prompts
-    temp_agent = ReActAgent(
-        tools=[],
-        llm=get_llm(),
-        memory=ChatMemoryBuffer.from_defaults(llm=get_llm()),
-    )
-    react_system_header_str = temp_agent.get_prompts()["react_header"]
-    custom_instructions = """
+    """Return the custom ReAct system prompt for CareerAI."""
+    react_system_header_str = """
 You are CareerAI, an AI assistant representing a professional's career.
 You have access to a powerful search tool that can retrieve any information from the resume database.
+
+## Tools
+You have access to the following tools:
+{tool_desc}
+
+## Output Format
+To answer the question, please use the following format.
+
+Thought: ...
+Action: ...
+Action Input: ...
+Observation: ...
+...
+
 Always reason step by step, and use the search tool when you need specific details.
 Respond in a professional, helpful, and concise manner.
 """
-    combined_prompt = react_system_header_str + "\n" + custom_instructions
-    return PromptTemplate(combined_prompt)
+    return PromptTemplate(react_system_header_str)
 
 
 def get_resume_agent() -> ReActAgent:
