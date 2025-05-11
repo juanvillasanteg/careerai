@@ -29,7 +29,7 @@ def run_careerai_app():
     static_profile = {
         "name": "Juan Villasante",
         "title": "AI Engineer | Data Scientist",
-        "location": "Remote | Global",
+        "location": "Stuttgart, Germany",
         "summary": "Experienced in AI, ML, and data-driven product development.",
     }
     with st.sidebar:
@@ -38,7 +38,6 @@ def run_careerai_app():
             profile_data=static_profile,
         )
 
-    # Define pages using st.Page
     chat_page = st.Page("ui/chat.py", title="Chat", icon=":material/chat:")
     resume_generator_page = st.Page(
         "ui/resume_generator.py",

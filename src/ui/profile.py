@@ -43,6 +43,16 @@ def render_profile_sidebar(clear_chat_callback, profile_data: dict | None = None
         )
     st.sidebar.button("Clear Chat History", on_click=clear_chat_callback)
 
+    linkedin = "https://raw.githubusercontent.com/juanvillasanteg/careerai/dev/src/ui/assets/linkedin.gif"
+    st.sidebar.caption(
+        f"""
+        <div style='display: flex; align-items: center;'>
+            <a href = 'www.linkedin.com/in/juan-villasante'><img src='{linkedin}' style='width: 35px; height: 35px; margin-right: 25px;'></a>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
 
 def render_profile_expander():
     """Render the profile/overview expander panel."""
