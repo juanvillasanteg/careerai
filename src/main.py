@@ -1,7 +1,6 @@
 import streamlit as st
 
-from ui.chat import render_chat
-from ui.profile import render_profile_expander, render_profile_sidebar
+from ui.profile import render_profile_sidebar
 from ui.utils import clear_chat_history
 
 
@@ -39,17 +38,21 @@ def run_careerai_app():
             profile_data=static_profile,
         )
 
-    st.title("💬 CareerAI")
-    st.caption("🚀 A Streamlit chatbot powered by LLMs")
+    # Define pages using st.Page
+    chat_page = st.Page("ui/chat.py", title="Chat", icon=":material/chat:")
+    resume_generator_page = st.Page(
+        "ui/resume_generator.py",
+        title="Resume with Image",
+        icon=":material/description:",
+    )
 
-    render_profile_expander()
-
-    if "messages" not in st.session_state:
-        st.session_state["messages"] = [
-            {"role": "assistant", "content": "Ask about my professional experience!"},
-        ]
-
-    render_chat(st.session_state["messages"])
+    pg = st.navigation(
+        [
+            chat_page,
+            resume_generator_page,
+        ],
+    )
+    pg.run()
 
 
 if __name__ == "__main__":
